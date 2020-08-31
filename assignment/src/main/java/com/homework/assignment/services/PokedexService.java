@@ -1,4 +1,4 @@
-package services;
+package com.homework.assignment.services;
 
 import org.springframework.stereotype.Service;
 
