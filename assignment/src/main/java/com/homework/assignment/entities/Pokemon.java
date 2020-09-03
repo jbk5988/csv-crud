@@ -1,38 +1,43 @@
 package com.homework.assignment.entities;
 
-import com.homework.assignment.enums.Type;
-import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvBindByPosition;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author Gibran
  */
+@Getter
+@Setter
 public class Pokemon {
 
     public Pokemon() {
     }
 
-    @CsvBindByName(column = "name")
+    @CsvBindByPosition(position = 0)
     int id;
-    @CsvBindByName
+    @CsvBindByPosition(position = 1)
     String name;
-    @CsvBindByName
-    Type type_1;
-    @CsvBindByName
-    Type type_2;
-    @CsvBindByName
-    int total_HP;
-    @CsvBindByName
+    @CsvBindByPosition(position = 2)
+    String type_1;
+    @CsvBindByPosition(position = 3)
+    String type_2;
+    @CsvBindByPosition(position = 4)
+    int total;
+    @CsvBindByPosition(position = 5)
+    int hp;
+    @CsvBindByPosition(position = 6)
     int attack;
-    @CsvBindByName
+    @CsvBindByPosition(position = 7)
     int defense;
-    @CsvBindByName
+    @CsvBindByPosition(position = 8)
     int sp_atk;
-    @CsvBindByName
+    @CsvBindByPosition(position = 9)
     int sp_def;
-    @CsvBindByName
+    @CsvBindByPosition(position = 10)
     int speed;
-    @CsvBindByName
+    @CsvBindByPosition(position = 11)
     int generation;
-    @CsvBindByName
-    boolean legendary;
+    @CsvBindByPosition(position = 12)
+    String legendary; // String is used to preserve case in original file
 }
