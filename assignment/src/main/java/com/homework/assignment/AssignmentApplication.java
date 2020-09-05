@@ -1,5 +1,7 @@
 package com.homework.assignment;
 
+import com.homework.assignment.entities.Pokemon;
+import com.homework.assignment.mutators.CSVMutator;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 import java.io.IOException;
@@ -18,7 +20,9 @@ public class AssignmentApplication {
 
 	@EventListener(ApplicationReadyEvent.class)
 	public void doSomethingAfterStartup() throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException {
-		TestClass testClass = new TestClass();
-		testClass.runTest();
+		CSVMutator<Pokemon> testClass = new CSVMutator(Pokemon.class);
+		Pokemon pokemon = new Pokemon();
+		pokemon.setName("Jigglypuff");
+		testClass.addRow(pokemon);
 	}
 }

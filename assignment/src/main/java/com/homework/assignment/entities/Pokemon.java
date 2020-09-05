@@ -9,7 +9,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class Pokemon {
+public class Pokemon implements PersistenEntity{
 
     public Pokemon() {
     }

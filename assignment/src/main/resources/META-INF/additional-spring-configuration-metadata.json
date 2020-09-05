@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "csv.persistence.path",
+      "type": "java.lang.String",
+      "description": "Path for csv file used as persistence."
+  }
+] }

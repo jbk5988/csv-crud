@@ -3,15 +3,20 @@ package com.homework.assignment.persistence;
 import com.homework.assignment.entities.Pokemon;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author Gibran
  */
+@Repository
 public class PokemonDAO implements DAO<Pokemon>{
+
+//    @Autowired
+//    CSVMutator<Pokemon> csvMutator;
 
     @Override
     public void save(Pokemon pokemon) {
-
+//        csvMutator.addRow(pokemon);
     }
 
     @Override
