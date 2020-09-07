@@ -135,6 +135,56 @@ public class PokemonMutator implements CSVMutator<Pokemon> {
         }
     }
 
-    public void deleteRow() {
+    public void deleteRow(long id) throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException {
+        if (entityList == null) {
+            try (
+                    Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));
+            ) {
+                mappingStrategy = new CustomMappingStrategy<>();
+                mappingStrategy.setType(Pokemon.class);
+
+                csvToBean = new CsvToBeanBuilder(reader)
+                        .withType(Pokemon.class)
+                        .withIgnoreLeadingWhiteSpace(true)
+                        .withSkipLines(1)
+                        .build();
+
+                entityList = csvToBean.parse();
+            }
+        }
+
+        Pokemon foundEntity = entityList.stream()
+                .filter(pokemon -> id == pokemon.getId())
+                .findAny()
+                .orElse(null);
+
+        int rowPosition = entityList.indexOf(foundEntity);
+
+        if(rowPosition != -1) {
+            entityList.remove(foundEntity);
+
+            try (
+                    Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));
+            ) {
+                mappingStrategy = new CustomMappingStrategy<>();
+                mappingStrategy.setType(Pokemon.class);
+
+                csvToBean = new CsvToBeanBuilder(reader)
+                        .withType(Pokemon.class)
+                        .withIgnoreLeadingWhiteSpace(true)
+                        .withSkipLines(1)
+                        .build();
+
+                Writer writer  = new FileWriter(csvFilePath);
+
+                statefulBeanToCsv = new StatefulBeanToCsvBuilder(writer)
+                        .withMappingStrategy(mappingStrategy)
+                        .withApplyQuotesToAll(false)
+                        .build();
+
+                statefulBeanToCsv.write(entityList);
+                writer.close();
+            }
+        }
     }
 }

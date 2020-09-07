@@ -1,7 +1,6 @@
 package com.homework.assignment.persistence;
 
 import com.homework.assignment.entities.Pokemon;
-import com.homework.assignment.mutators.CSVMutator;
 import com.homework.assignment.mutators.PokemonMutator;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
@@ -42,7 +41,7 @@ public class PokemonDAO implements DAO<Pokemon>{
     }
 
     @Override
-    public void delete(Pokemon pokemon) {
-
+    public void delete(long id) throws CsvRequiredFieldEmptyException, IOException, CsvDataTypeMismatchException {
+        pokemonMutator.deleteRow(id);
     }
 }

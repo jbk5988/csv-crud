@@ -51,4 +51,10 @@ public class PokedexController {
         pokemonDAO.update(pokemon, null);
         return "Pokemon updated";
     }
+
+    @GetMapping("/deletepokemon/{id}")
+    public String deleteUser(@PathVariable("id") long id) throws CsvRequiredFieldEmptyException, IOException, CsvDataTypeMismatchException {
+        pokemonDAO.delete(id);
+        return "Pokemon deleted";
+    }
 }

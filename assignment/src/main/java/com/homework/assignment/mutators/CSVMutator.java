@@ -19,5 +19,5 @@ public interface CSVMutator<T> {
 
     public void updateRow(T rowObject) throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException;
 
-    public void deleteRow();
+    public void deleteRow(long id) throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException;
 }

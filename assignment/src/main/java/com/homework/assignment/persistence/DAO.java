@@ -21,5 +21,5 @@ public interface DAO<T> {
 
     void update(T t, String[] params) throws CsvRequiredFieldEmptyException, IOException, CsvDataTypeMismatchException;
 
-    void delete(T t);
+    void delete(long id) throws CsvRequiredFieldEmptyException, IOException, CsvDataTypeMismatchException;
 }
