@@ -17,12 +17,4 @@ public class AssignmentApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AssignmentApplication.class, args);
 	}
-
-	@EventListener(ApplicationReadyEvent.class)
-	public void doSomethingAfterStartup() throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException {
-		PokemonMutator testClass = new PokemonMutator();
-		Pokemon pokemon = new Pokemon();
-		pokemon.setName("Jigglypuff");
-		testClass.addRow(pokemon);
-	}
 }
