@@ -1,8 +1,14 @@
 package com.homework.assignment.persistence;
 
 import com.homework.assignment.entities.Pokemon;
+import com.homework.assignment.mutators.CSVMutator;
+import com.homework.assignment.mutators.PokemonMutator;
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -11,17 +17,18 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class PokemonDAO implements DAO<Pokemon>{
 
-//    @Autowired
-//    CSVMutator<Pokemon> csvMutator;
+    @Autowired
+    PokemonMutator pokemonMutator;
 
     @Override
-    public void save(Pokemon pokemon) {
-//        csvMutator.addRow(pokemon);
+    public void save(Pokemon pokemon) throws CsvRequiredFieldEmptyException, IOException, CsvDataTypeMismatchException {
+        pokemonMutator.addRow(pokemon);
     }
 
     @Override
-    public Optional<Pokemon> get(long id) {
-        return Optional.empty();
+    public Optional<Pokemon> get(long id) throws IOException {
+        Optional<Pokemon> requestedPokemon = Optional.ofNullable(pokemonMutator.getRow(id));;
+        return requestedPokemon;
     }
 
     @Override

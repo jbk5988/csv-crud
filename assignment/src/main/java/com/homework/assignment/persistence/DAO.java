@@ -1,5 +1,8 @@
 package com.homework.assignment.persistence;
 
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,9 +13,9 @@ import java.util.Optional;
  */
 public interface DAO<T> {
 
-    void save(T t);
+    void save(T t) throws CsvRequiredFieldEmptyException, IOException, CsvDataTypeMismatchException;
 
-    Optional<T> get(long id);
+    Optional<T> get(long id) throws IOException;
 
     List<T> getAll();
 
