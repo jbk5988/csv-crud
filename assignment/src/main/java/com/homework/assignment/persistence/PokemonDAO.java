@@ -37,8 +37,8 @@ public class PokemonDAO implements DAO<Pokemon>{
     }
 
     @Override
-    public void update(Pokemon pokemon, String[] params) {
-
+    public void update(Pokemon pokemon, String[] params) throws CsvRequiredFieldEmptyException, IOException, CsvDataTypeMismatchException {
+        pokemonMutator.updateRow(pokemon);
     }
 
     @Override

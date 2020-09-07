@@ -23,7 +23,7 @@ public class PokedexController {
     PokemonDAO pokemonDAO;
 
     @PostMapping("/addpokemon")
-    public String addUser(@RequestBody Pokemon pokemon, BindingResult result)
+    public String addPokemonm(@RequestBody Pokemon pokemon, BindingResult result)
             throws CsvRequiredFieldEmptyException, IOException, CsvDataTypeMismatchException {
         if (result.hasErrors()) {
             System.out.println(result.getAllErrors());
@@ -38,5 +38,17 @@ public class PokedexController {
     @GetMapping(value="/pokemon/{id}")
     Pokemon getPokemon(@PathVariable Long id) throws IOException {
         return pokemonDAO.get(id).get();
+    }
+
+    @PostMapping("/updatepokemon")
+    public String updatePokemon(@RequestBody Pokemon pokemon, BindingResult result)
+            throws CsvRequiredFieldEmptyException, IOException, CsvDataTypeMismatchException {
+        if (result.hasErrors()) {
+            System.out.println(result.getAllErrors());
+            return "/";
+        }
+
+        pokemonDAO.update(pokemon, null);
+        return "Pokemon updated";
     }
 }

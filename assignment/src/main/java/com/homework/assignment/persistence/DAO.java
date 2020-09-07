@@ -19,7 +19,7 @@ public interface DAO<T> {
 
     List<T> getAll();
 
-    void update(T t, String[] params);
+    void update(T t, String[] params) throws CsvRequiredFieldEmptyException, IOException, CsvDataTypeMismatchException;
 
     void delete(T t);
 }
